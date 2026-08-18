@@ -5,9 +5,51 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rest countrie API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d78b4e87c4.js" crossorigin="anonymous"></script>
+    <script type="module" src="/src/main.ts" defer></script>
+    <link rel="stylesheet" href="./src/style.css">
   </head>
   <body>
+  <!-- Navbar with toggle-btn-->
+    <header class="navbar">
+      <div class="container">
+        <h1 class="logo">Where in the world?</h1>
+        <button id="theme-toggle" class="theme-btn">
+          <span class="moon-icon"><i class="fa-regular fa-moon"></i></span> Dark Mode
+        </button>
+      </div>
+    </header>
+    <main class="main-container">
+  <!-- Search and Filter -->
+      <section class="controls-section">
+        <div class="search-box">
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search for a country..." 
+          />
+        </div>
 
-    <script type="module" src="/src/main.ts"></script>
+        <div class="filter-box">
+          <select id="region-filter">
+            <option value="">Filter by Region</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Countries' cards section -->
+      <section id="countries-container">
+        <!-- Cards will be dynamically generated here  -->
+      </section>
+    </main>
   </body>
 </html>

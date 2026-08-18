@@ -6,25 +6,66 @@ export interface CountryName {
     alternates?: string[];
 }
 
+export interface CapitalName {
+    name: string;
+    attributes?: {
+        administrative: boolean;
+        constitutional: boolean;
+        executive: boolean;
+        judicial: boolean;
+        legislative: boolean;
+        primary: boolean;
+    };
+    coordinates?: {
+        lat: number;
+        lng: number;
+    }
+}
+
+export interface CoutryFlag {
+    colors?: {
+        dominant: string;
+        palette: object[];
+    };
+    prominent?: string;
+    description?: string;
+    emoji?: string;
+    html_entity?: string;
+    unicode?: string;
+    url_png: string;
+    url_svg: string;
+}
+
 export interface Currency {
+    code?: string;
     name: string;
     symbol?: string;
 }
 
+export interface Language {
+    bcp47?: string;
+    iso639_1?: string;
+    name: string;
+    native_name?: string;
+}
+
+export interface CountryCode {
+    alpha_2?: string;
+    alpha_3?: string;
+    ccn3?: string;
+    cioc?: string;
+    name?: string;
+}
+
 export interface Country {
     names: CountryName; 
-    cca3: string;
-    capital?: string[];
+    codes?: CountryCode;
+    capitals?: CapitalName[];
     region: string;
     subregion?: string;
     population: number;
-    latlng?: number[];
     borders?: string[];
-    flags?: {
-        png: string;
-        svg: string;
-        alt?: string;
-    };
-    currencies?: Record<string, Currency>;
-    languages?: Record<string, string>;
+    flag?: CoutryFlag;
+    currencies?: Currency[];
+    languages?: Language[];
 }
