@@ -30,6 +30,7 @@ async function fetchAllCountries(): Promise< Country[] >{
 // Render Function
 
 function renderCountries(countries: Country[]): void {
+
     if (!countriesContainer) {
         console.error("The container wasn't found in HTML")
         return;
@@ -44,33 +45,46 @@ function renderCountries(countries: Country[]): void {
         const card = document.createElement('article');
         card.classList.add('country-card');
 
+        const alpha3 = country.codes?.alpha_3?.trim();
+        const uuid = country.uuid || country.id;
+        const name = country.names?.common;
+
+        const countryCode = (alpha3 && alpha3 !== '') ? alpha3 : (uuid || name);
+
+        card.dataset.code = countryCode;
+
         const formattedPopulation = country.population ? country.population.toLocaleString('en-US') : 'N/A';
         const capitalName = country.capitals?.[0]?.name || 'N/A';
         const flagSrc = country.flag?.url_png || country.flag?.url_svg || '';
-        const countryCode = country.codes?.alpha_3 || '';
 
         card.innerHTML = `
             <div class="card-flag">
-                <img src="${flagSrc}" alt="${country.flag?.description || country.names.common + ' flag'}" loading="lazy">
+                <img src="${flagSrc}" alt="${country.flag?.description || (name ? name + ' flag' : 'flag')}" loading="lazy">
             </div>
             <div class="card-body">
-                <h2 class="country-title">${country.names.common}</h2>
+                <h2 class="country-title">${name || 'Unknown'}</h2>
                 <p><strong>Population:</strong> ${formattedPopulation}</p>
                 <p><strong>Region:</strong> ${country.region}</p>
                 <p><strong>Capital:</strong> ${capitalName}</p>
             </div>
         `;
 
-        card.addEventListener('click', () => {
-            if (countryCode) {
-                window.location.href = `detail.html?code=${countryCode}`
-            }
-        });
-
         countriesContainer.appendChild(card);
     })
 
 }
+
+countriesContainer?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    
+    const card = target.closest('.country-card') as HTMLElement;
+
+    if (card && card.dataset.code) {
+        const code = card.dataset.code;
+        console.log('Click on:', code);
+        window.location.href = `detail.html?code=${encodeURIComponent(code)}`;
+    }
+})
 
 // Function to load all countries from REST API with fetch and alternatively from data.json
 
@@ -114,9 +128,13 @@ function filterCountries(): void {
     const selectedRegion = regionFilter?.value || '';
 
     const filteredCountries = allCountries.filter((country) => {
-        const matchesSearch = country.names.common.toLowerCase().includes(searchTerm);
+        const countryName = country.names?.common?.toLowerCase() || '';
+        const countryRegion = country.region || '';
+        
 
-        const matchesRegion = selectedRegion === '' || country.region === selectedRegion;
+        const matchesSearch = countryName.includes(searchTerm);
+
+        const matchesRegion = selectedRegion === '' || countryRegion === selectedRegion;
 
         return matchesSearch && matchesRegion;
     })

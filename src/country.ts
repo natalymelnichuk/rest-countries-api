@@ -22,10 +22,10 @@ export interface CapitalName {
     }
 }
 
-export interface CoutryFlag {
+export interface CountryFlag {
     colors?: {
         dominant: string;
-        palette: object[];
+        palette: Record<string, unknown>[];
     };
     prominent?: string;
     description?: string;
@@ -61,11 +61,13 @@ export interface Country {
     names: CountryName; 
     codes?: CountryCode;
     capitals?: CapitalName[];
-    region: string;
+    region?: string;
     subregion?: string;
-    population: number;
+    population?: number;
     borders?: string[];
-    flag?: CoutryFlag;
+    flag?: CountryFlag;
     currencies?: Currency[];
     languages?: Language[];
+    uuid?: string;
+    id?: string;
 }
