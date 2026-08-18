@@ -10,7 +10,7 @@ let allCountries: Country[] = [];
 
 const localDataJSON = true;
 
-async function fetchAllCountries(): Promise< Country[] >{
+export async function fetchAllCountries(): Promise< Country[] >{
     const limit = 100;
     const offsets = [0, 100, 200];
 
@@ -119,7 +119,9 @@ async function loadCountries(): Promise<void> {
     }
 }
 
-loadCountries();
+if (countriesContainer) {
+    loadCountries();
+}
 
 // Function to make search and filter work together
 
