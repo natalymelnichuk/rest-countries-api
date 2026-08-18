@@ -1,6 +1,10 @@
 import type { Country } from "./country";
 
 const countriesContainer = document.querySelector<HTMLElement>('#countries-container');
+const searchInput = document.querySelector<HTMLInputElement>('#search-input');
+const regionFilter = document.querySelector<HTMLSelectElement>('#region-filter');
+const themeBtn = document.querySelector<HTMLButtonElement>('.theme-btn');
+
 
 let allCountries: Country[] = [];
 
@@ -58,7 +62,9 @@ function renderCountries(countries: Country[]): void {
         `;
 
         card.addEventListener('click', () => {
-            console.log('Click:', countryCode);
+            if (countryCode) {
+                window.location.href = `detail.html?code=${countryCode}`
+            }
         });
 
         countriesContainer.appendChild(card);
@@ -101,4 +107,63 @@ async function loadCountries(): Promise<void> {
 
 loadCountries();
 
+// Function to make search and filter work together
+
+function filterCountries(): void {
+    const searchTerm = searchInput?.value.toLowerCase().trim() || '';
+    const selectedRegion = regionFilter?.value || '';
+
+    const filteredCountries = allCountries.filter((country) => {
+        const matchesSearch = country.names.common.toLowerCase().includes(searchTerm);
+
+        const matchesRegion = selectedRegion === '' || country.region === selectedRegion;
+
+        return matchesSearch && matchesRegion;
+    })
+
+    renderCountries(filteredCountries);
+}
+
+
+// addEventListener to input Event (Search)
+
+searchInput?.addEventListener('input', filterCountries);
+
+// searchInput?.addEventListener('input', (event) => {
+//     //User input
+//     const target = event.target as HTMLInputElement;
+//     const searchItem = target.value.toLowerCase().trim();
+
+//     const filteredCountries = allCountries.filter((country) => {
+//         return country.names.common.toLowerCase().includes(searchItem);
+//     })
+
+//     renderCountries(filteredCountries);
+// });
+
+// region Filter
+
+regionFilter?.addEventListener('change', filterCountries);
+
+// regionFilter?.addEventListener('change', (event) => {
+//     const target = event.target as HTMLSelectElement;
+//     const selectedRegion = target.value;
+
+//     if(selectedRegion === '') {
+//         renderCountries(allCountries);
+//         return;
+//     }
+
+//     const filteredCountries = allCountries.filter((country) => {
+//         return country.region === selectedRegion;
+//     })
+
+//     renderCountries(filteredCountries);
+// })
+
+// Toggle btn to change Mode 
+
+themeBtn?.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+});
 
