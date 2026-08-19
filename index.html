@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d78b4e87c4.js" crossorigin="anonymous"></script>
     <script type="module" src="/src/main.ts" defer></script>
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
   <!-- Navbar with toggle-btn-->
@@ -24,7 +24,7 @@
     </header>
     <main class="main-container">
   <!-- Search and Filter -->
-      <section class="controls-section" aria-live="polite">
+      <section class="controls-section" >
         <div class="search-box">
           <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
           <input 
@@ -48,7 +48,7 @@
       </section>
 
       <!-- Countries' cards section -->
-      <section id="countries-container">
+      <section id="countries-container" aria-live="polite">
         <!-- Cards will be dynamically generated here  -->
       </section>
     </main>
