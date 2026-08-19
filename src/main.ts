@@ -53,7 +53,7 @@ function renderCountries(countries: Country[]): void {
     //If user's input is invalid
 
     if (countries.length === 0) {
-        countriesContainer.innerHTML = '<p class="no-results">No countries found</p>';
+        countriesContainer.innerHTML = '<p class="no-results" role="status">No countries found</p>';
         return;
     }
 
