@@ -103,7 +103,8 @@ countriesContainer?.addEventListener('click', (event) => {
         const code = card.dataset.code;
         console.log('Click on:', code);
         window.location.href = `detail.html?code=${encodeURIComponent(code)}`;
-    }
+    } 
+
 })
 
 // Function to load all countries from REST API with fetch and alternatively from data.json
