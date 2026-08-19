@@ -83,8 +83,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1.5em;
-    width: 100%;
-    max-width: 50%;
+    width: 50%;
 }
 
 .search-box input {
@@ -288,6 +287,129 @@ body {
 
 @media (max-width: 768px) {
     
+    .main-container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 2em;
+    }
+
+
+
+
+    /* NAVBAR */
+
+    .navbar {
+        background-color: var(--elem-color);
+        box-shadow: var(--shadow);
+        padding: 3em 2em;
+    }
+
+
+    /* SEARCH AND FILTER */
+
+    .controls-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        gap: 2em;
+        width: 100%;
+    }
+
+    .search-box {
+        padding: 1em 2em;
+        width: 100%;
+    }
+
+    .filter-box {
+        width: 40%;
+    }
+
+    /* Grid for countries' cards */
+
+    #countries-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3em;
+        padding: 2em 4em;
+    }
+
+    .country-card {
+        height: 450px;
+    }
+
+    .card-flag {
+        height: 50%;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.5em;
+        height: 50%;
+    } 
+
+
+    /* ==========================================
+        DETAIL PAGE STYLES
+    ========================================== */
+
+
+    /* Detail info container */
+    #country-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3em;
+        width: 100%;
+    }
+
+    /* Country flag */
+    .detail-flag {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Detail text info container */
+    .detail-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 2em;
+    }
+
+    .detail-info h2 {
+        font-size: 2em;
+        font-weight: 800;
+    }
+
+    /* Parameters grid (Population, Region, etc.) */
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.8em;
+    }
+
+    .info-grid p {
+        font-size: 0.9em;
+    }
+
+    .info-grid strong {
+        font-weight: 600;
+    }
+
+
+    /* Container for Border countries */
+
+    .border-countries {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 2em;
+    }
+
 }
 
 
