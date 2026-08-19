@@ -166,4 +166,128 @@ body {
     line-height: 1.4;
 } 
 
+/* ==========================================
+    DETAIL PAGE STYLES
+   ========================================== */
+
+/* Button «Back» */
+#back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.5em 1.5em;
+    background-color: var(--elem-color, #ffffff);
+    color: var(--text-color, #111517);
+    border: none;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.29);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4em 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25em 0.75em rgba(0, 0, 0, 0.15);
+}
+
+/* Detail info container */
+#country-detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 5em;
+    width: 100%;
+}
+
+/* Country flag */
+.detail-flag {
+    width: 50%;
+    height: auto;
+}
+
+.detail-flag img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.6em rgba(0, 0, 0, 0.1);
+}
+
+/* Detail text info container */
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.detail-info h2 {
+    font-size: 2em;
+    font-weight: 800;
+}
+
+/* Parameters grid (Population, Region, etc.) */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+}
+
+.info-grid p {
+    font-size: 0.9em;
+}
+
+.info-grid strong {
+    font-weight: 600;
+}
+
+
+/* Container for Border countries */
+
+.border-countries {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.border-countries strong {
+    font-size: 1em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.borders-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8em;
+}
+
+.border-btn {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    background-color: var(--elem-color);
+    color: var(--text-color);
+    border-radius: 0.25em;
+    box-shadow: 0 0 0.5em var(--shadow);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.border-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25em 0.6em var(--shadow);
+}
+
+/* ==========================================
+    MEDIA QUERIES 
+   ========================================== */
+
+
+@media (max-width: 768px) {
+    
+}
+
 

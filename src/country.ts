@@ -9,12 +9,12 @@ export interface CountryName {
 export interface CapitalName {
     name: string;
     attributes?: {
-        administrative: boolean;
-        constitutional: boolean;
-        executive: boolean;
-        judicial: boolean;
-        legislative: boolean;
-        primary: boolean;
+        administrative?: boolean;
+        constitutional?: boolean;
+        executive?: boolean;
+        judicial?: boolean;
+        legislative?: boolean;
+        primary?: boolean;
     };
     coordinates?: {
         lat: number;
@@ -25,7 +25,7 @@ export interface CapitalName {
 export interface CountryFlag {
     colors?: {
         dominant: string;
-        palette: Record<string, unknown>[];
+        palette: Record<string, string | undefined>[];
     };
     prominent?: string;
     description?: string;
