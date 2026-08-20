@@ -1,5 +1,7 @@
 import type { Country } from "./country";
 
+import L from 'leaflet';
+
 const detailContainer = document.querySelector<HTMLElement>('#country-detail');
 const backBtn = document.querySelector<HTMLButtonElement>('#back-btn');
 const themeBtn = document.querySelector<HTMLButtonElement>('.theme-btn');
@@ -151,7 +153,13 @@ function renderDetail(country: Country, allCountries: Country[]): void {
             </div>
             ${bordersHTML}
         </div>
+        <div class="map-section">
+                <strong>Location:</strong>
+                <div id="map"></div>
+        </div>
     `;
+
+    initMap(country.coordinates, name);
 }
 
 backBtn?.addEventListener('click', () => {
@@ -175,3 +183,65 @@ themeBtn?.addEventListener('click', () => {
 });
 
 loadCountryDetail();
+
+
+// Leaflet 
+
+
+
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon2x,
+    shadowUrl: markerShadow,
+});
+
+let mapInstance: L.Map | null = null;
+
+function initMap(
+        coords: { lat: number; lng: number } | undefined, 
+        countryName: string
+    ): void {
+    const mapElement = document.getElementById('map');
+    if (!mapElement) return;
+
+  // 
+    if (!coords 
+        || typeof coords.lat !== 'number' 
+        || typeof coords.lng !== 'number'
+    ) {
+    mapElement.innerHTML = '<p>Map coordinates are not available for this country.</p>';
+    return;
+    }
+
+  // 
+    if (mapInstance) {
+        mapInstance.remove(); 
+        mapInstance = null;
+    }
+
+
+    // 
+
+    const center: [number, number] = [coords.lat, coords.lng];
+
+  // 
+    mapInstance = L.map('map').setView(center, 6);
+
+  //
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mapInstance);
+
+  // 
+    L.marker(center)
+        .addTo(mapInstance)
+        .bindPopup(`<b>${countryName}</b>`)
+        .openPopup();
+}

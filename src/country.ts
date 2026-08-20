@@ -34,6 +34,7 @@ export interface CountryFlag {
     unicode?: string;
     url_png: string;
     url_svg: string;
+    
 }
 
 export interface Currency {
@@ -70,4 +71,8 @@ export interface Country {
     languages?: Language[];
     uuid?: string;
     id?: string;
+    coordinates?: {
+        lat: number;
+        lng: number;
+    };
 }
