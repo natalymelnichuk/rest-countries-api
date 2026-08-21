@@ -19,7 +19,7 @@ Built as a multi-page TypeScript application using **Vite** and deployed on **Re
 * **Responsive Layout:** Tailored design for mobile and desktop screens.
 * **Empty State Handling:** Displays a clear, user-friendly message (`Country not found`) when search queries yield no matching results.
 * **Border Country Navigation:** Dynamic mapping of border country codes to full names with direct click-through navigation.
-* 
+* **Interactive Map Integration:** Uses **Leaflet.js** to display an interactive geographical map for each country on the detail page (`detail.html`) based on API `latlng` coordinates.
 ---
 
 ## ⚡ Technical Challenges & Solutions
@@ -49,6 +49,10 @@ To provide clear feedback when users search for non-existent countries or apply 
 * **Interactive Navigation:** Transformed raw border codes into interactive components, allowing users to smoothly transition between adjacent country
   detail pages via URL parameters (`detail.html?code=FRA`).
 
+
+### 6. Leaflet Map Rendering & Dynamic Coordinates
+* **Geographical Mapping:** Integrated Leaflet.js to render custom interactive maps on `detail.html`.
+* **Dynamic Center Realignment:** Extracted latitude and longitude arrays (`latlng`) from the country data model to dynamically re-center the map view and place location markers upon page load.
 
 
 
