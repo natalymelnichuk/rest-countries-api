@@ -347,7 +347,6 @@ body {
         display: grid;
         grid-template-columns: 1fr;
         gap: 3em;
-        padding: 2em 4em;
     }
 
     .country-card {
